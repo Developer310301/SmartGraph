@@ -1,1 +1,1 @@
-#include "smartgraph/interface/Graph.h"
+#include "smartgraph/interface/IGraph.h"
