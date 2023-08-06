@@ -1,7 +1,7 @@
 #ifndef SMARTGRAPH_VERTEX_H
 #define SMARTGRAPH_VERTEX_H
 
-namespace smartgraph::interfaces{
+namespace smartgraph::interface{
 
     /**
      * @brief Class that represents a vertex of a graph.
