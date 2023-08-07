@@ -1,13 +1,13 @@
 #ifndef SMARTGRAPH_IGRAPH_H
 #define SMARTGRAPH_IGRAPH_H
 
-#include "smartgraph/interface/Vertex.h"
-#include "smartgraph/interface/Edge.h"
-
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
 #include <memory>
+
+#include "smartgraph/interface/Vertex.h"
+#include "smartgraph/interface/Edge.h"
 
 namespace smartgraph::interface{
 

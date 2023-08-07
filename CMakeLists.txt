@@ -52,3 +52,5 @@ install(DIRECTORY include/ DESTINATION include)
 #     ${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY_NAME}ConfigVersion.cmake
 #     DESTINATION lib/cmake/${LIBRARY_NAME}
 # )
+add_executable(TestUnorientedGraph test/test_unoriented_graph.cpp)
+target_link_libraries(TestUnorientedGraph ${LIBRARY_NAME})
