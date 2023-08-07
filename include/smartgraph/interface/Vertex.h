@@ -1,6 +1,8 @@
 #ifndef SMARTGRAPH_VERTEX_H
 #define SMARTGRAPH_VERTEX_H
 
+#include <functional>
+
 namespace smartgraph::interface{
 
     /**
@@ -29,8 +31,24 @@ namespace smartgraph::interface{
              * @return T* pointer of type ``T`` to the content of the vertex
              */
             T* getElement() { return &this->_element; };
+
+            bool operator==(const Vertex<T>& other) const{
+                return this->_element==other._element;
+            }
     };
 
+}
+
+namespace std{
+
+    template<typename T>
+    struct hash<smartgraph::interface::Vertex<T>>{
+        size_t operator()(const smartgraph::interface::Vertex<T>& obj) const {
+            // Hash the data inside the MyClass instance
+            return std::hash<T>()(*obj.getElement());
+        }
+    };
+    
 }
 
 #endif

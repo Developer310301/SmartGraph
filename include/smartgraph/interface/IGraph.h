@@ -19,10 +19,13 @@ namespace smartgraph::interface{
         using EdgeList = std::vector<Edge<E>>;
 
         private:
-            AdjancencyMap _adjacencyMap{};  //Map of vetexes andacencies.
+            AdjancencyMap _adjacencyMap;  //Map of vetexes andacencies.
             EdgeList _edges;                //List of edges.
 
         public:
+
+            IGraph() : _adjacencyMap(AdjancencyMap(10)), _edges(EdgeList(10)){}
+
             /**
              * @brief Get the number of vertex in the graph.
              * 
