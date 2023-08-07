@@ -17,20 +17,20 @@ namespace smartgraph::interface{
             T _element; //Content of a vertex.
 
         public:
-            Vertex() = delete;
+            Vertex(){};
             /**
-             * @brief Constructor of a vertex.
+             * @brief Set content of a vertex.
              * 
              * @param element content of the vertex
              */
-            Vertex(T element) : _element(element){};
+            void setElement(T element) {this->_element = element;};
 
             /**
              * @brief Get the Element object
              * 
              * @return T* pointer of type ``T`` to the content of the vertex
              */
-            T* getElement() { return &this->_element; };
+            T getElement() const { return this->_element; };
 
             bool operator==(const Vertex<T>& other) const{
                 return this->_element==other._element;
@@ -45,7 +45,7 @@ namespace std{
     struct hash<smartgraph::interface::Vertex<T>>{
         size_t operator()(const smartgraph::interface::Vertex<T>& obj) const {
             // Hash the data inside the MyClass instance
-            return std::hash<T>()(*obj.getElement());
+            return std::hash<T>()(obj.getElement());
         }
     };
     

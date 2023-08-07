@@ -19,13 +19,15 @@ namespace smartgraph::interface{
      */
     template<typename V, typename E>
     class IGraph{
-        using VertexPointer = std::shared_ptr<Vertex<V>>;
-        using EdgePointer = std::shared_ptr<Edge<E>>;
-        using AdjancencyMap = std::unordered_map<Vertex<V>,std::unordered_map<VertexPointer,EdgePointer>>;
+        using VertexPointer = std::shared_ptr<const Vertex<V>>;
+        using EdgePointer = std::shared_ptr<const Edge<E>>;
+        using AdjancencyMap = std::unordered_map<VertexPointer,std::unordered_map<VertexPointer,EdgePointer>>;
+        using VertexList = std::unordered_set<Vertex<V>>;
         using EdgeList = std::unordered_set<Edge<E>>;
 
-        private:
+        protected:
             AdjancencyMap _adjacencyMap{};  //Map of vetexes andacencies.
+            VertexList _vertexes{};            //List of vertexes.
             EdgeList _edges{};                //List of edges.
 
         public:
@@ -76,7 +78,7 @@ namespace smartgraph::interface{
              * @param e Edge used to get the two vertexes.
              * @return std::vector<Vertex<V>*> Array containing the references to the two vertexes of the given Edge.
              */
-            virtual std::vector<VertexPointer> endVertices(Edge<E>* e) = 0;
+            virtual std::vector<VertexPointer> endVertices(EdgePointer e) = 0;
 
             /**
              * @brief Get the terminal vertex of ``e`` different from ``v``.
@@ -143,7 +145,7 @@ namespace smartgraph::interface{
              * @param v Vertex to remove
              * @return int returns 1 if correctly removed, 0 if the vertex doesn't exist in the graph, -1 for others error
              */
-            virtual int removeVertex(VertexPointer v) = 0;
+            //virtual int removeVertex(VertexPointer v) = 0;
 
             /**
              * @brief Remove the edge from the graph
@@ -151,7 +153,7 @@ namespace smartgraph::interface{
              * @param e Edge to remove
              * @return int returns 1 if correctly removed, 0 if the edge doesn't exist in the graph, -1 for others error
              */
-            virtual int removeEdge(EdgePointer e) = 0;
+            //virtual int removeEdge(EdgePointer e) = 0;
 
     };
 

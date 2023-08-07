@@ -1,6 +1,8 @@
 #ifndef SMARTGRAPH_EDGE_H
 #define SMARTGRAPH_EDGE_H
 
+#include <functional>
+
 namespace smartgraph::interface{
     
     /**
@@ -15,23 +17,35 @@ namespace smartgraph::interface{
             T _element; //Content of an edge.
 
         public:
-            Edge() = delete;
-            /**
-             * @brief Constructor of an edge.
-             * 
-             * @param element content of the edge
-             */
-            Edge(T element) : _element(element){};
+            Edge(){};
+
+            void setElement(T& element) { this->_element=element; }        
 
             /**
              * @brief Get the Element object
              * 
              * @return T* pointer of type ``T`` to the content of the edge
              */
-            T* getElement() { return &this->_element; };
+            T getElement() const { return this->_element; };
+
+            bool operator==(const Edge<T>& other) const{
+                return this->_element==other._element;
+            }
     };
 
 } // namespace smartgraph::interface
+
+namespace std{
+
+    template<typename T>
+    struct hash<smartgraph::interface::Edge<T>>{
+        size_t operator()(const smartgraph::interface::Edge<T>& obj) const {
+            // Hash the data inside the MyClass instance
+            return std::hash<T>()(obj.getElement());
+        }
+    };
+    
+}
 
 
 #endif
