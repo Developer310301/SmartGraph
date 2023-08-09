@@ -2,6 +2,7 @@
 #define SMARTGRAPH_VERTEX_H
 
 #include <functional>
+#include <ostream>
 
 namespace smartgraph::interface{
 
@@ -35,7 +36,17 @@ namespace smartgraph::interface{
             bool operator==(const Vertex<T>& other) const{
                 return this->_element==other._element;
             }
+
+            bool operator!=(const Vertex<T>& other) const{
+                return this->_element!=other._element;
+            }
     };
+
+    template<typename V>
+    std::ostream& operator<<(std::ostream& os, const Vertex<V>& obj){
+        os << obj.getElement();
+        return os;
+    }
 
 }
 

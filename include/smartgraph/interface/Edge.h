@@ -2,6 +2,7 @@
 #define SMARTGRAPH_EDGE_H
 
 #include <functional>
+#include <ostream>
 
 namespace smartgraph::interface{
     
@@ -31,7 +32,18 @@ namespace smartgraph::interface{
             bool operator==(const Edge<T>& other) const{
                 return this->_element==other._element;
             }
+
+            bool operator!=(const Edge<T>& other) const{
+                return this->_element!=other._element;
+            }
     };
+
+    template<typename E>
+    std::ostream& operator<<(std::ostream& os, const Edge<E>& obj){
+        os << obj.getElement();
+        return os;
+    }
+
 
 } // namespace smartgraph::interface
 
