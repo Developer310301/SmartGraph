@@ -1,18 +1,21 @@
 #include <iostream>
 #include <string>
 
-#include "smartgraph/graph/Graph.hpp"
+#include "smartgraph/graph/OrientedGraph.hpp"
+#include "smartgraph/graph/UnorientedGraph.hpp"
 
 using namespace smartgraph::graph;
 
 int main(){
 
-    Graph<std::string, int>* graph = new Graph<std::string, int>();
+    UnorientedGraph<std::string, int>* graph = new UnorientedGraph<std::string, int>();
 
     graph->insertVertex("BOS");
     graph->insertVertex("JFK");
     graph->insertVertex("MIA");
-    graph->insertEdge("BOS","JKF",2000);
+    graph->insertEdge("BOS","JFK",2000);
+    graph->insertEdge("BOS","MIA",1000);
+    graph->removeEdge(1000);
 
     std::cout << "Number of vertices: " << graph->numVertices() << std::endl;
     std::cout << "Vertices:" << std::endl;
