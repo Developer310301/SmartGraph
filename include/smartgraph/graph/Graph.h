@@ -1,6 +1,3 @@
-#ifndef SMARTGRAPH_GRAPH_H
-#define SMARTGRAPH_GRAPH_H
-
 #include <string>
 #include <sstream>
 
@@ -107,8 +104,9 @@ namespace smartgraph::graph{
              * @brief Insert a new @see Vertex that will contains an object ``x`` and then it will return a reference to the new vertex.
              * 
              * @param x Content of a new vertex.
+             * @return int returns 1 if correctly inserted, 0 otherwise
              */
-            void insertVertex(V x) override;
+            int insertVertex(V x) override;
 
             /**
              * @brief Insert a new @see Edge that will contains an object ``y`` between the vertexes ``u`` and ``v`` and it will return a reference to the new edge.
@@ -116,8 +114,9 @@ namespace smartgraph::graph{
              * @param u Starting vertex.
              * @param y Ending vertex.
              * @param x Content of the new edge.
+             * @return int returns 1 if correctly inserted, 0 otherwise
              */
-            virtual void insertEdge(V u, V y, E x) override;
+            virtual int insertEdge(V u, V y, E x) override;
 
             /**
              * @brief Remove the vertex from the graph and all the incident edges from him
@@ -147,5 +146,3 @@ namespace smartgraph::graph{
     };
 
 }
-
-#endif

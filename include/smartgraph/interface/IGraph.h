@@ -123,8 +123,9 @@ namespace smartgraph::interface{
              * @brief Insert a new @see Vertex that will contains an object ``x`` and then it will return a reference to the new vertex.
              * 
              * @param x Content of a new vertex.
+             * @return int returns 1 if correctly inserted, 0 otherwise
              */
-            virtual void insertVertex(V x) = 0;
+            virtual int insertVertex(V x) = 0;
 
             /**
              * @brief Insert a new @see Edge that will contains an object ``y`` between the vertexes ``u`` and ``v`` and it will return a reference to the new edge.
@@ -132,8 +133,9 @@ namespace smartgraph::interface{
              * @param u Starting vertex.
              * @param y Ending vertex.
              * @param x Content of the new edge.
+             * @return int returns 1 if correctly inserted, 0 otherwise
              */
-            virtual void insertEdge(V u, V y, E x) = 0;
+            virtual int insertEdge(V u, V y, E x) = 0;
 
             /**
              * @brief Remove the vertex from the graph and all the incident edges from him

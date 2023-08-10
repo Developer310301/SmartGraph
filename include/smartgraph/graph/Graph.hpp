@@ -1,3 +1,6 @@
+#ifndef SMARTGRAPH_GRAPH_H
+#define SMARTGRAPH_GRAPH_H
+
 #include "smartgraph/graph/Graph.h"
 
 namespace smartgraph::graph{
@@ -139,25 +142,33 @@ namespace smartgraph::graph{
     }
 
     template<typename V, typename E>
-    void Graph<V,E>::insertVertex(V x){
+    int Graph<V,E>::insertVertex(V x){
         Vertex<V> v1; v1.setElement(x);
+        auto it_v1 = this->_adjacencyMap.find(v1);
+        if(it_v1 != this->_adjacencyMap.end())
+            return 0;
         this->_adjacencyMap[v1];
+        return 1;
     }
 
     template<typename V, typename E>
-    void Graph<V,E>::insertEdge(V u, V y, E x){
+    int Graph<V,E>::insertEdge(V u, V y, E x){
         Vertex<V> v1; v1.setElement(u);
         Vertex<V> v2; v2.setElement(y);
         Edge<E> ed; ed.setElement(x);
 
+        auto it_ed = this->_edges.find(ed);
+        if(it_ed != this->_edges.end()) return 0;
+
         auto it_v1 = this->_adjacencyMap.find(v1);
         auto it_v2 = this->_adjacencyMap.find(v2);
-        if(it_v2 == this->_adjacencyMap.end())
-            return;
+        if(it_v1 == this->_adjacencyMap.end() || it_v2 == this->_adjacencyMap.end()) return 0;
 
         auto ed_ptr = this->_edges.insert(ed);
 
         this->_adjacencyMap[v1][&(it_v2->first)] = &*(ed_ptr.first);
+        
+        return 1;
     }
 
     template<typename V, typename E>
@@ -186,6 +197,8 @@ namespace smartgraph::graph{
             this->_edges.erase(*it);
         }
 
+        this->_adjacencyMap.erase(v1);
+
         return 1;
     }
 
@@ -202,13 +215,13 @@ namespace smartgraph::graph{
                 if(it_v1.second == &*it){
                     it_v1.second = nullptr;
                     this->_adjacencyMap[it_v.first].erase(it_v1.first);
+                    this->_edges.erase(ed);
+                    return 1;
                 }
             }
         }
 
-        this->_edges.erase(ed);
-
-        return 1;
+        return 0;
     }
 
     template<typename V, typename E>
@@ -229,3 +242,5 @@ namespace smartgraph::graph{
 
     }
 }
+
+#endif
