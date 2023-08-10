@@ -153,6 +153,22 @@ namespace smartgraph::interface{
              */
             virtual int removeEdge(E e) = 0;
 
+            /**
+             * @brief Methot that determine if a vertex exists in the graph
+             * 
+             * @param v Vertex to find
+             * @return int return 1 if the vertex exists, 0 otherwise
+             */
+            virtual int vertexExists(V v) = 0;
+
+            /**
+             * @brief Method that determine if an edge exists in the graph
+             * 
+             * @param e Edge to find
+             * @return int return 1 if the edge exists, 0 otherwise
+             */
+            virtual int edgeExists(E e) = 0;
+
             ~IGraph() { 
                 for(auto& it : this->_adjacencyMap){
                     for(auto& it1 : it.second){

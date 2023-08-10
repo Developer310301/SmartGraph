@@ -54,3 +54,6 @@ install(DIRECTORY include/ DESTINATION include)
 # )
 add_executable(TestUnorientedGraph test/test_unoriented_graph.cpp)
 target_link_libraries(TestUnorientedGraph ${LIBRARY_NAME})
+
+add_executable(TestDijkstra test/test_dijkstra.cpp)
+target_link_libraries(TestDijkstra ${LIBRARY_NAME})

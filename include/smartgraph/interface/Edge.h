@@ -36,6 +36,14 @@ namespace smartgraph::interface{
             bool operator!=(const Edge<T>& other) const{
                 return this->_element!=other._element;
             }
+
+            bool operator<(const Edge<T>& other) const{
+                return this->_element<other._element;
+            }
+
+            bool operator>(const Edge<T>& other) const{
+                return this->_element>other._element;
+            }
     };
 
     template<typename E>

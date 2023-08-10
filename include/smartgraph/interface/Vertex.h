@@ -40,6 +40,14 @@ namespace smartgraph::interface{
             bool operator!=(const Vertex<T>& other) const{
                 return this->_element!=other._element;
             }
+
+            bool operator<(const Vertex<T>& other) const{
+                return this->_element<other._element;
+            }
+
+            bool operator>(const Vertex<T>& other) const{
+                return this->_element>other._element;
+            }
     };
 
     template<typename V>

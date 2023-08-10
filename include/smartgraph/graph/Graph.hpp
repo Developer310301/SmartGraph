@@ -75,6 +75,21 @@ namespace smartgraph::graph{
     }
 
     template<typename V, typename E>
+    std::vector<const Vertex<V>*> Graph<V,E>::getNeightbors(V v){
+        Vertex<V> v1; v1.setElement(v);
+        std::vector<const Vertex<V>*> verts;
+
+        if(!this->_adjacencyMap.count(v1)){
+            return verts;
+        }
+
+        for(auto& it : this->_adjacencyMap[v1]){
+            verts.emplace_back((it.first));
+        }
+        return verts;
+    }
+
+    template<typename V, typename E>
     const Vertex<V>* Graph<V,E>::opposite(V v, E e){
         Vertex<V> v1; v1.setElement(v);
         Edge<E> edge; edge.setElement(e);
@@ -222,6 +237,18 @@ namespace smartgraph::graph{
         }
 
         return 0;
+    }
+
+    template<typename V, typename E>
+    int Graph<V,E>::vertexExists(V v){
+        Vertex<V> v1; v1.setElement(v);
+        return this->_adjacencyMap.count(v1);
+    }
+
+    template<typename V, typename E>
+    int Graph<V,E>::edgeExists(E e){
+        Edge<E> ed; ed.setElement(e);
+        return this->_edges.count(ed);
     }
 
     template<typename V, typename E>

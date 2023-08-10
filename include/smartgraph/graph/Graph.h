@@ -60,6 +60,14 @@ namespace smartgraph::graph{
             std::vector<const Vertex<V>*> endVertices(E e) override;
 
             /**
+             * @brief Get neighbors verteces of the specified vertex
+             * 
+             * @param v starting vertex
+             * @return std::vector<VertexPointer> Array containing the references to the neighboring verteces
+             */
+            std::vector<const Vertex<V>*> getNeightbors(V v);
+
+            /**
              * @brief Get the terminal vertex of ``e`` different from ``v``.
              * 
              * @param v Starting vertex.
@@ -133,6 +141,22 @@ namespace smartgraph::graph{
              * @return int returns 1 if correctly removed, 0 if the edge doesn't exist in the graph, -1 for others error
              */
             virtual int removeEdge(E e) override;
+
+            /**
+             * @brief Methot that determine if a vertex exists in the graph
+             * 
+             * @param v Vertex to find
+             * @return int return 1 if the vertex exists, 0 otherwise
+             */
+            int vertexExists(V v) override;
+
+            /**
+             * @brief Method that determine if an edge exists in the graph
+             * 
+             * @param e Edge to find
+             * @return int return 1 if the edge exists, 0 otherwise
+             */
+            int edgeExists(E e) override;
 
             /**
              * @brief Method that print out the graph structure
