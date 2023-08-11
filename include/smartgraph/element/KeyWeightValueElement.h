@@ -16,10 +16,11 @@ namespace smartgraph::element{
 
         public:
             KeyWeightValueElement() : KeyValueElement<K,V>(){};
+            KeyWeightValueElement(K key, W weight, V value) : KeyValueElement<K,V>(key, value), _weight(weight){};
 
             void setWeight(const W w) { this->_weight = w; }
 
-            W getWeight() { return this->_weight; }
+            W getWeight() const { return this->_weight; }
     };
 
     template<typename K, typename W, typename V>

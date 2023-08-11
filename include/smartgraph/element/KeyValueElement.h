@@ -16,11 +16,13 @@ namespace smartgraph::element{
         public:
             KeyValueElement(){};
 
+            KeyValueElement(K k, V v) : _key(k), _value(v){}
+
             void setKey(const K k) { this->_key = k; }
             void setValue(const V v) { this->_value = v; }
 
             const K getKey() const { return this->_key; }
-            V getValue() { return this->_value; }
+            V getValue() const { return this->_value; }
 
             bool operator==(const KeyValueElement<K,V>& other) const{
                 return this->_key == other._key;
