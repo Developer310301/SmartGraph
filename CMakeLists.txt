@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(SmartGraph VERSION 1.0.0)
+project(SmartGraph VERSION 1.0.2)
 
 # Define your library name
 set(LIBRARY_NAME smartgraph)

@@ -26,7 +26,7 @@ namespace smartgraph::graph{
              * 
              * @return std::vector<Vertex<T>> vector of vertex.
              */
-            std::vector<Vertex<V>> vertices() override;
+            std::vector<const Vertex<V>*> vertices() override;
 
             /**
              * @brief Get the number of edges in the graph.
@@ -38,9 +38,9 @@ namespace smartgraph::graph{
             /**
              * @brief Get a vector of edges in the graph.
              * 
-             * @return std::vector<Edge<E>> vector of edges.
+             * @return std::vector<const Edge<E>*> vector of edges.
              */
-            std::vector<Edge<E>> edges() override;
+            std::vector<const Edge<E>*> edges() override;
 
             /**
              * @brief Get the Edge reference object between the edges ``u`` and ``v``.

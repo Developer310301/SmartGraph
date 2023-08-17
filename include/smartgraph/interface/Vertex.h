@@ -31,7 +31,7 @@ namespace smartgraph::interface{
              * 
              * @return T* pointer of type ``T`` to the content of the vertex
              */
-            T getElement() const { return this->_element; };
+            const T* getElement() const { return &(this->_element); };
 
             bool operator==(const Vertex<T>& other) const{
                 return this->_element==other._element;
@@ -52,7 +52,7 @@ namespace smartgraph::interface{
 
     template<typename V>
     std::ostream& operator<<(std::ostream& os, const Vertex<V>& obj){
-        os << obj.getElement();
+        os << *(obj.getElement());
         return os;
     }
 
@@ -64,7 +64,7 @@ namespace std{
     struct hash<smartgraph::interface::Vertex<T>>{
         size_t operator()(const smartgraph::interface::Vertex<T>& obj) const {
             // Hash the data inside the MyClass instance
-            return std::hash<T>()(obj.getElement());
+            return std::hash<T>()(*(obj.getElement()));
         }
     };
     

@@ -14,12 +14,12 @@ namespace smartgraph::algorithm{
         UpdateablePriorityPairQueue<V, W, inverseComparator<V, W>> pq;
 
         for(auto& v : graph.vertices()){
-            if(v.getElement() == v_start){
+            if(*(v->getElement()) == v_start){
                 pq.push({v_start, 0});
                 d[v_start]=0;
             }else{
-                pq.push({v.getElement(), std::numeric_limits<W>::max()});
-                d[v.getElement()] = std::numeric_limits<W>::max();
+                pq.push({*(v->getElement()), std::numeric_limits<W>::max()});
+                d[*(v->getElement())] = std::numeric_limits<W>::max();
             }
         }
 
@@ -29,10 +29,10 @@ namespace smartgraph::algorithm{
             if(u.second != std::numeric_limits<W>::max());
                 cloud[u.first] = u.second;
             for(auto ed : graph.outgoingEdges(u.first)){
-                V v = graph.opposite(u.first, ed->getElement())->getElement();
+                V v = *(graph.opposite(u.first, *(ed->getElement()))->getElement());
                 
                 if(!cloud.count(v)){
-                    W current_weight = ed->getElement().getWeight();
+                    W current_weight = ed->getElement()->getWeight();
                     if(d[u.first]+current_weight < d[v]){
                         d[v] = d[u.first]+current_weight;
                         pq.updateValue(v, d[v]);
@@ -58,9 +58,9 @@ namespace smartgraph::algorithm{
             
 
             for(auto& it : graph.incomingEdges(current_node)){
-                V opposite_vertex = (graph.opposite(current_node, it->getElement())->getElement());
-                if(reach_cloud[opposite_vertex] + it->getElement().getWeight() == reach_cloud[current_node]){
-                    path.push(std::pair<V, KeyWeightValueElement<K,W,E>>(current_node,it->getElement()));
+                V opposite_vertex = *(graph.opposite(current_node, *(it->getElement()))->getElement());
+                if(reach_cloud[opposite_vertex] + it->getElement()->getWeight() == reach_cloud[current_node]){
+                    path.push(std::pair<V, KeyWeightValueElement<K,W,E>>(current_node,*(it->getElement())));
                     current_node = opposite_vertex;
                     break;
                 }

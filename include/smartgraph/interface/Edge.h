@@ -27,7 +27,7 @@ namespace smartgraph::interface{
              * 
              * @return T* pointer of type ``T`` to the content of the edge
              */
-            T getElement() const { return this->_element; };
+            const T* getElement() const { return &(this->_element); };
 
             bool operator==(const Edge<T>& other) const{
                 return this->_element==other._element;
@@ -48,7 +48,7 @@ namespace smartgraph::interface{
 
     template<typename E>
     std::ostream& operator<<(std::ostream& os, const Edge<E>& obj){
-        os << obj.getElement();
+        os << *(obj.getElement());
         return os;
     }
 
@@ -61,7 +61,7 @@ namespace std{
     struct hash<smartgraph::interface::Edge<T>>{
         size_t operator()(const smartgraph::interface::Edge<T>& obj) const {
             // Hash the data inside the MyClass instance
-            return std::hash<T>()(obj.getElement());
+            return std::hash<T>()(*(obj.getElement()));
         }
     };
     

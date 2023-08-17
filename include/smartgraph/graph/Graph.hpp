@@ -11,11 +11,11 @@ namespace smartgraph::graph{
     }
 
     template<typename V, typename E>
-    std::vector<Vertex<V>> Graph<V,E>::vertices(){
-        std::vector<Vertex<V>> verts;
+    std::vector<const Vertex<V>*> Graph<V,E>::vertices(){
+        std::vector<const Vertex<V>*> verts;
 
         for(auto& it : this->_adjacencyMap){
-            verts.push_back(it.first);
+            verts.push_back(&(it.first));
         }
 
         return verts;
@@ -27,11 +27,11 @@ namespace smartgraph::graph{
     }
 
     template<typename V, typename E>
-    std::vector<Edge<E>> Graph<V,E>::edges(){
-        std::vector<Edge<E>> verts;
+    std::vector<const Edge<E>*> Graph<V,E>::edges(){
+        std::vector<const Edge<E>*> verts;
 
         for(auto& it : this->_edges){
-            verts.push_back(it);
+            verts.push_back(&it);
         }
 
         return verts;
@@ -121,7 +121,7 @@ namespace smartgraph::graph{
         auto it_v = this->_adjacencyMap.find(v1);
         if(it_v != this->_adjacencyMap.end())
             for(auto& it :this->_adjacencyMap){
-                if(it.first.getElement() != v && it.second.count(&(it_v->first))){
+                if(*(it.first.getElement()) != v && it.second.count(&(it_v->first))){
                     counter++;
                 }
             }
@@ -148,7 +148,7 @@ namespace smartgraph::graph{
         auto it_v = this->_adjacencyMap.find(v1);
         if(it_v != this->_adjacencyMap.end())
             for(auto& it :this->_adjacencyMap){
-                if(it.first.getElement() != v && it.second.count(&(it_v->first))){
+                if(*(it.first.getElement()) != v && it.second.count(&(it_v->first))){
                     edges.push_back((it.second[&(it_v->first)]));
                 }
             }

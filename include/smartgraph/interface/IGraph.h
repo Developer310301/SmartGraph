@@ -45,7 +45,7 @@ namespace smartgraph::interface{
              * 
              * @return std::vector<Vertex<T>> vector of vertex.
              */
-            virtual std::vector<Vertex<V>> vertices() = 0;
+            virtual std::vector<const Vertex<V>*> vertices() = 0;
 
             /**
              * @brief Get the number of edges in the graph.
@@ -57,9 +57,9 @@ namespace smartgraph::interface{
             /**
              * @brief Get a vector of edges in the graph.
              * 
-             * @return std::vector<Edge<E>> vector of edges.
+             * @return std::vector<const Edge<E>*> vector of edges.
              */
-            virtual std::vector<Edge<E>> edges() = 0;
+            virtual std::vector<const Edge<E>*> edges() = 0;
 
             /**
              * @brief Get the Edge reference object between the edges ``u`` and ``v``.
